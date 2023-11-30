@@ -29,7 +29,7 @@ def calculate_profits(data, user_money):
 			sell_price = lowest_sell_offer - 0.1
 
 			# Prevent unrealistic orders
-			if sell_price > buy_price and sell_price <= 10 * buy_price:
+			if sell_price > buy_price and sell_price <= 1.5 * buy_price:
 				profit_per_item = sell_price - buy_price
 				quantity = int(user_money / buy_price)
 				total_profit = quantity * profit_per_item
