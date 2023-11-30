@@ -87,6 +87,9 @@ def create_gui():
 
 	tree.pack(expand=True, fill='both')
 
+	# Bind Ctrl+R to refresh data
+	root.bind('<Control-r>', lambda event: refresh_data(tree, money_entry))
+
 	return root
 
 
