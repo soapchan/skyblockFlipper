@@ -35,10 +35,11 @@ def calculate_profits(data, user_money):
 				total_profit = quantity * profit_per_item
 
 				if total_profit > 0:
-					total_profit_per_item = total_profit / quantity if quantity else 0
+					# Calculate the percentage increase
+					percentage_increase = (profit_per_item / buy_price) * 100
 					profits.append((item, buy_price.__round__(2), sell_price.__round__(2),
 									profit_per_item.__round__(2), quantity,
-									total_profit.__round__(2), total_profit_per_item.__round__(2)))
+									total_profit.__round__(2), percentage_increase.__round__(2)))
 
 	profits.sort(key=lambda x: x[5], reverse=True)
 	return profits[:50]
