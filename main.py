@@ -38,7 +38,7 @@ def calculate_profits(data, user_money):
 					total_profit_per_item = total_profit / quantity if quantity else 0
 					profits.append((item, buy_price.__round__(2), sell_price.__round__(2),
 									profit_per_item.__round__(2), quantity,
-									total_profit, total_profit_per_item.__round__(2)))
+									total_profit.__round__(2), total_profit_per_item.__round__(2)))
 
 	profits.sort(key=lambda x: x[5], reverse=True)
 	return profits[:50]
