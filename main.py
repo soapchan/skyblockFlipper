@@ -18,8 +18,9 @@ def fetch_bazaar_data():
 def calculate_profits(data, user_money):
     profits = []
     for item, details in data.items():
-        buy_price = details['buy_summary'][0]['pricePerUnit'] if details['buy_summary'] else 0
-        sell_price = details['sell_summary'][0]['pricePerUnit'] if details['sell_summary'] else 0
+        # Use the highest buy order and lowest sell offer
+        buy_price = max(detail['pricePerUnit'] for detail in details['buy_summary']) if details['buy_summary'] else 0
+        sell_price = min(detail['pricePerUnit'] for detail in details['sell_summary']) if details['sell_summary'] else 0
         profit_per_item = sell_price - buy_price
         quantity = int(user_money / buy_price) if buy_price else 0
         total_profit = quantity * profit_per_item
@@ -29,6 +30,7 @@ def calculate_profits(data, user_money):
     # Sort by total profit in descending order and select top 50
     profits.sort(key=lambda x: x[5], reverse=True)
     return profits[:50]
+
 
 # Function to update the Treeview with new data
 def update_treeview(tree, data):
